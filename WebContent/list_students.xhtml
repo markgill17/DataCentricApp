@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{studentController.loadStudents()}" />
+</f:metadata>
+<h:head>
+	<title>Students</title>
+</h:head>
+<body>
+	<h:outputStylesheet library="css" name="tables.css" />
+	<h:form>
+		<h:commandButton value="Add Student" action="addstudent.xhtml" />
+		<h:dataTable value="#{studentController.students}" var="s"
+			headerClass="table-header" rowClasses="table-odd-row,table-even-row">
+			<h:column>
+				<f:facet name="header">Student ID</f:facet>
+				<h:outputText value="#{s.sID}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Course ID</f:facet>
+				<h:outputText value="#{s.cID}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Student Name</f:facet>
+				<h:outputText value="#{s.name}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Address</f:facet>
+				<h:outputText value="#{s.address}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandLink value="Show Students" action="list_students.xhtml" />
+				<h:commandLink value="Delete" action="#{studentController.deleteStudent(s)}" />
+			</h:column>
+		</h:dataTable>
+		<h:commandLink value="Homepage" action="index.xhtml" />
+	</h:form>
+</body>
+</html>
+
